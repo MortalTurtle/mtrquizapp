@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
             showToast("Please enter your login");
             return;
         }
+
+
     }
 
     private void createUser() {
@@ -76,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             showToast("Please enter the code");
             return;
         }
+
 
         // Здесь проверяем пароль (замените на свою логику)
         if (password.equals("123456")) { // Пример проверки

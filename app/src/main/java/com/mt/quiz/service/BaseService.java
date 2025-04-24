@@ -14,7 +14,7 @@ public class BaseService {
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
-    protected static ApiService apiService = retrofit.create(ApiService.class);
+    public static ApiService apiService = retrofit.create(ApiService.class);
     private final HashMap<Class<?>, Function<String, Object>> convertStringValueToSomeClass = new HashMap<>();
 
     public BaseService() {

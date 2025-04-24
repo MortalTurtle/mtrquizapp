@@ -26,20 +26,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Кнопка подтверждения  -->
+
     <TextView
         android:id="@+id/subText"
-        android:layout_width="196dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="358dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/comfortaa_light"
         android:text="Please login, or create new user"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.451"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/helloText" />
-
-    <!-- Кнопка подтверждения  -->
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/loginInputLayout"
