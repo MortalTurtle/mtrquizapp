@@ -13,7 +13,7 @@ public interface ApiService {
         Call<User> getUserByIdOrUsername(@Query("id") @Nullable String userId,
                                          @Query("username") @Nullable String username);
         @POST("users")
-        Call<Void> postUser(@Body UserRaw user);
+        Call<String> postUser(@Body UserRaw user);
         @PATCH("users")
         Call<Void> editUser(@Header("X-User-Auth-Token") String token, @Body UserRaw userToEdit);
 

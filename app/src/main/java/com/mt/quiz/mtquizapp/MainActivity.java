@@ -1,5 +1,6 @@
 package com.mt.quiz.mtquizapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,18 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.mt.quiz.models.apimodels.UserRaw;
+import com.mt.quiz.service.BaseService;
+import com.mt.quiz.service.UserService;
+
+import java.io.IOException;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
+import retrofit2.Call;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,55 +53,35 @@ public class MainActivity extends AppCompatActivity {
         createUserButton = findViewById(R.id.createUserButton);
 
         // Обработчик нажатия кнопки
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                login();
-            }
-        });
-        createUserButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                createUser();
-            }
-        });
+        loginButton.setOnClickListener(v -> login());
+        createUserButton.setOnClickListener(v -> createUser());
     }
 
     private void login() {
         String password = passwordEditText.getText().toString().trim();
         String login = loginEditText.getText().toString().trim();
 
-        if (password.isEmpty()) {
-            showToast("Please enter the password");
-            return;
-        }
         if (login.isEmpty()) {
             showToast("Please enter your login");
             return;
         }
-
-
+        if (password.isEmpty()) {
+            showToast("Please enter the password");
+            return;
+        }
+        var response = UserService.login(login, password);
+        if (response == null) {
+            showToast("Server does not respond");
+            return;
+        }
+        if (response.isSuccessful()) showToast("Login successful!" + response.body());
+        if (response.code() == 404) showToast("User not found");
+        if (response.code() == 400) showToast(BaseService.parseError(response).getDescription());
     }
 
     private void createUser() {
-        String password = passwordEditText.getText().toString().trim();
-        String login = loginEditText.getText().toString().trim();
-
-        if (password.isEmpty()) {
-            showToast("Please enter the code");
-            return;
-        }
-
-
-        // Здесь проверяем пароль (замените на свою логику)
-        if (password.equals("123456")) { // Пример проверки
-            showToast("Access granted!");
-            // Переход на следующий экран:
-            // startActivity(new Intent(this, NextActivity.class));
-        } else {
-            showToast("Invalid code, please try again");
-            passwordEditText.setText("");
-        }
+        Intent intent =  new Intent(MainActivity.this, CreateUser.class);
+        startActivity(intent);
     }
 
     private void showToast(String message) {
