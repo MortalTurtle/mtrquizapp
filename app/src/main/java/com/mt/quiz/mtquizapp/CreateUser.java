@@ -32,14 +32,12 @@ public class CreateUser extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.create_user_screen); // Укажите ваш новый макет
+        setContentView(R.layout.create_user_screen);
 
-        // Инициализация элементов
         loginEditText = findViewById(R.id.loginEditText);
         passEditText = findViewById(R.id.passEditText);
         createUserButton = findViewById(R.id.createUserButton);
 
-        // Обработчик кнопки
         createUserButton.setOnClickListener(v -> createUser());
     }
 

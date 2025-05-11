@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import lombok.RequiredArgsConstructor;
+import retrofit2.Response;
 
 @RequiredArgsConstructor
 public class TestsService extends BaseService {
@@ -21,7 +22,7 @@ public class TestsService extends BaseService {
         throw new UnsupportedOperationException();
     }
 
-    public List<Test> getTestsForGroup(String apiToken, String groupId, Integer limit, Integer offset) {
+    public static Response<List<Test>> getTestsForGroup(String apiToken, String groupId, Integer limit, Integer offset) {
         throw new UnsupportedOperationException();
     }
     public void updateTest(String apiToken, String groupId,
