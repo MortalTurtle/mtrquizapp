@@ -3,6 +3,7 @@ package com.mt.quiz.mtquizapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,64 +12,36 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.mt.quiz.models.Group;
 import com.mt.quiz.service.GroupService;
 
-public class EditGroupActivity extends AppCompatActivity {
+public class EditGroupActivity extends BaseMtrQuizActivity {
 
     private TextInputEditText groupNameEditText;
     private TextInputEditText groupDescriptionEditText;
     private Button saveButton;
+    private Group group;
 
-    private Group currentGroup;
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_group);
-
+        Intent intent = getIntent();
+        group = (Group) intent.getSerializableExtra("GROUP");
+        TextView nameView = findViewById(R.id.groupNameEditPreviewText);
+        nameView.setText(group.getName());
         groupNameEditText = findViewById(R.id.groupNameEditText);
         groupDescriptionEditText = findViewById(R.id.groupDescriptionEditText);
         saveButton = findViewById(R.id.saveButton);
 
-        loadGroupData(); //загрузка группы
 
         saveButton.setOnClickListener(v -> saveChanges());
     }
-
-    private void loadGroupData() {
-
-        currentGroup = (Group) getIntent().getSerializableExtra("GROUP_DATA");
-
-        if (currentGroup != null) {
-            groupNameEditText.setText(currentGroup.getName());
-            groupDescriptionEditText.setText(currentGroup.getDescription());
-        } else {
-
-            currentGroup = new Group("", "", "");
-            Toast.makeText(this, "Group data not loaded", Toast.LENGTH_SHORT).show();
-        }
-    }
-
     private void saveChanges() {
         String newName = groupNameEditText.getText().toString().trim();
         String newDescription = groupDescriptionEditText.getText().toString().trim();
-
-        if (newName.isEmpty()) {
-            groupNameEditText.setError("Group name cannot be empty");
-            return;
-        }
-
-
-        currentGroup.setName(newName);
-        currentGroup.setDescription(newDescription);
-        boolean success = GroupService.updateGroup(currentGroup);
-
-        if (success) {
+        newName = newName.isEmpty() ? group.getName() : newName;
+        newDescription = newDescription.isEmpty() ? group.getDescription() : newName;
+        var response = GroupService.editGroup(apiToken, group.getId(), new Group(group.getId(), newName, newDescription));
+        if (response != null && response.isSuccessful()) {
             Toast.makeText(this, "Changes saved successfully", Toast.LENGTH_SHORT).show();
             setResult(RESULT_OK);
-            Intent intent= new Intent(EditGroupActivity.this, GroupInfoActivity.class);
-            startActivity(intent);
-            finish();
-        } else {
-            Toast.makeText(this, "Failed to save changes", Toast.LENGTH_SHORT).show();
-        }
+        } else handleErrorCodes(response);
     }
 }

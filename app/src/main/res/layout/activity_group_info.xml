@@ -12,12 +12,40 @@
         android:id="@+id/groupNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="28dp"
         android:fontFamily="@font/comfortaa_light"
-        android:text="Group Name"
+        android:text="Group name"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/groupCodeTextView"
+        android:layout_width="361dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="76dp"
+        android:clickable="false"
+        android:fontFamily="@font/comfortaa_light"
+        android:singleLine="true"
+        android:text="Group code"
+        android:textIsSelectable="true"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/groupDescriptionTextView"
+        android:layout_width="317dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="124dp"
+        android:fontFamily="@font/comfortaa_light"
+        android:text="Group description"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,14 +53,15 @@
         android:id="@+id/editGroupButton"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="44dp"
         android:backgroundTint="#b993c7"
         android:fontFamily="@font/comfortaa_light"
         android:text="Edit Group"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@+id/groupNameTextView"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/groupDescriptionTextView" />
 
     <Button
         android:id="@+id/manageTestsButton"
@@ -46,5 +75,20 @@
         android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@+id/editGroupButton"
         tools:layout_editor_absoluteX="16dp" />
+
+    <Button
+        android:id="@+id/joinAnotherGroupButton"
+        android:layout_width="157dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="84dp"
+        android:backgroundTint="#b993c7"
+        android:fontFamily="@font/comfortaa_light"
+        android:text="Join Another"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/manageTestsButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

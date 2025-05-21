@@ -12,19 +12,19 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="355dp"
-        android:layout_height="71dp"
+        android:layout_width="353dp"
+        android:layout_height="50dp"
         android:layout_marginHorizontal="23dp"
         android:layout_marginTop="152dp"
         android:fontFamily="@font/comfortaa_light"
-        android:text="Enter the group code or create groups"
+        android:text="Enter the group code or create one"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.714"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.171" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/CodeInputLayout"

@@ -2,6 +2,7 @@ package com.mt.quiz.mtquizapp;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -10,17 +11,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mt.quiz.models.Role;
 import com.mt.quiz.models.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestsActivity extends AppCompatActivity {
+public class TestsActivity extends BaseMtrQuizActivity {
 
     private RecyclerView testsRecyclerView;
     private TextView emptyStateText;
     private List<Test> testList = new ArrayList<>();
-
+    private String groupId;
+    private Role groupRole;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,22 +32,18 @@ public class TestsActivity extends AppCompatActivity {
         testsRecyclerView = findViewById(R.id.testsRecyclerView);
         emptyStateText = findViewById(R.id.emptyStateText);
 
-        // Простой адаптер для кнопок
         TestsAdapter adapter = new TestsAdapter(testList, test -> {
             Toast.makeText(this, "Starting: " + test.getName(), Toast.LENGTH_SHORT).show();
-            // Здесь переход к тесту
+            // TODO: Здесь переход к тесту
         });
 
         testsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         testsRecyclerView.setAdapter(adapter);
 
-        loadTestData(); // Загрузка тестов
+        loadTestData();
     }
 
     private void loadTestData() {
-        // Временные данные для примера
-        testList.add(new Test("1", "group1", "user1", "Math Test", 70, "Algebra and Geometry"));
-        testList.add(new Test("2", "group1", "user2", "History Quiz", 60, "World History"));
 
         updateUI();
     }

@@ -9,9 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.mt.quiz.service.BaseService;
+import com.mt.quiz.service.GroupService;
 import com.mt.quiz.service.UserService;
 
-public class GroupConnActivity extends AppCompatActivity {
+public class GroupConnActivity extends BaseMtrQuizActivity {
 
     private TextInputEditText codeEditText;
     private Button joinGroupButton;
@@ -38,27 +39,20 @@ public class GroupConnActivity extends AppCompatActivity {
             return;
         }
 
-        var response = "";
-        if (response == null) {
-            showToast("Server does not respond");
-            return;
-        }
-        if (response.isSuccessful()) {
+        var response = UserService.joinGroup(apiToken, code);
+        if (response != null && response.isSuccessful()) {
             showToast("Joining group with code: " + code);
-            Intent intent = new Intent(GroupConnActivity.this, GroupInfoActivity.class); //инфо о группе
+            Intent intent = new Intent(GroupConnActivity.this, GroupInfoActivity.class);
+            intent.putExtra("GROUP_ID", code);
+            intent.putExtra(this.API_TOKEN_KEY, apiToken);
             startActivity(intent);
             finish();
-        }
-        if (response.code() == 404) showToast("User not found");
-        if (response.code() == 400) showToast(BaseService.parseError(response).getDescription());
+        } else handleErrorCodes(response);
     }
 
     private void createGroup() {
         Intent intent = new Intent(this, CreateGroupActivity.class);
+        intent.putExtra(API_TOKEN_KEY, apiToken);
         startActivity(intent);
-    }
-
-    private void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

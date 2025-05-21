@@ -14,55 +14,61 @@
         android:padding="24dp">
 
         <!-- Group Name Input -->
+
+        <!-- Group Description Input -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/groupNameInputLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="68dp"
             android:hint="Group Name"
             app:boxStrokeColor="#b993c7"
             app:hintTextColor="#b993c7"
             app:layout_constraintTop_toTopOf="parent"
-            app:startIconTint="#b993c7">
+            app:startIconTint="#b993c7"
+            tools:layout_editor_absoluteX="24dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/groupNameEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/comfortaa_light"
-                android:inputType="textCapWords"
-                android:textColor="#000000"
-                android:textColorHint="#b993c7"
-                android:textSize="16sp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <!-- Group Description Input -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/groupDescriptionInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:hint="Group Description"
-            app:boxStrokeColor="#b993c7"
-            app:hintTextColor="#b993c7"
-            app:layout_constraintTop_toBottomOf="@+id/groupNameInputLayout"
-            app:startIconTint="#b993c7">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/groupDescriptionEditText"
-                android:layout_width="match_parent"
-                android:layout_height="57dp"
-                android:fontFamily="@font/comfortaa_light"
-                android:inputType="textMultiLine"
-                android:lines="3"
+                android:inputType="text"
                 android:textColor="#000000"
                 android:textColorHint="#b993c7"
                 android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Save Button -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/groupDescriptionInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="370dp"
+            android:layout_height="111dp"
+            android:layout_marginTop="36dp"
+            android:hint="Group Description"
+            app:boxStrokeColor="#b993c7"
+            app:hintTextColor="#b993c7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/groupNameInputLayout"
+            app:startIconTint="#b993c7">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/groupDescriptionEditText"
+                android:layout_width="match_parent"
+                android:layout_height="111dp"
+                android:clickable="false"
+                android:fontFamily="@font/comfortaa_light"
+                android:inputType="textMultiLine"
+                android:lines="4"
+                android:selectAllOnFocus="false"
+                android:textColor="#000000"
+                android:textColorHint="#b993c7"
+                android:textSize="16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <Button
             android:id="@+id/saveButton"
             android:layout_width="match_parent"
@@ -76,6 +82,20 @@
             android:textSize="18sp"
             app:layout_constraintTop_toBottomOf="@+id/groupDescriptionInputLayout"
             tools:layout_editor_absoluteX="16dp" />
+
+        <TextView
+            android:id="@+id/groupNameEditPreviewText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/comfortaa_light"
+            android:text="Group name"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/groupNameInputLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

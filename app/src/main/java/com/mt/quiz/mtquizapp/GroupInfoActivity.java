@@ -2,49 +2,64 @@ package com.mt.quiz.mtquizapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.mt.quiz.models.Role;
+import com.mt.quiz.models.Group;
+import com.mt.quiz.service.GroupService;
 
-public class GroupInfoActivity extends AppCompatActivity {
+public class GroupInfoActivity extends BaseMtrQuizActivity {
 
     private Button editGroupButton;
     private Button manageTestsButton;
-    private boolean isAdmin = false; // Это значение должно приходить из предыдущего экрана или из API
-
+    private Button joinAnotherGroupButton;
+    private Role userRole;
+    private String groupId;
+    private Group group;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_info);
 
-        // Получаем информацию о правах пользователя из Intent
         Intent intent = getIntent();
-        if (intent != null) {
-            isAdmin = intent.getBooleanExtra("isAdmin", false);
-        }
-
+        groupId = intent.getStringExtra("GROUP_ID");
+        var groupResponse = GroupService.getById(apiToken, groupId);
+        var roleResponse = GroupService.getUserRole(apiToken, groupId);
+        if (groupResponse == null || !groupResponse.isSuccessful() ||
+                roleResponse == null || !roleResponse.isSuccessful())
+            throw new RuntimeException();
+        group = groupResponse.body();
+        TextView nameView = findViewById(R.id.groupNameTextView);
+        TextView descriptionView = findViewById(R.id.groupDescriptionTextView);
+        TextView codeView = findViewById(R.id.groupCodeTextView);
+        nameView.setText(group.getName());
+        descriptionView.setText(group.getName());
+        codeView.setText(group.getId());
+        userRole = Role.valueOf(roleResponse.body());
         editGroupButton = findViewById(R.id.editGroupButton);
         manageTestsButton = findViewById(R.id.manageTestsButton);
-
-        // Настраиваем видимость кнопок в зависимости от прав
-        editGroupButton.setVisibility(isAdmin ? View.VISIBLE : View.GONE);
-
-        // Обработчики нажатий
+        joinAnotherGroupButton = findViewById(R.id.joinAnotherGroupButton);
+        editGroupButton.setVisibility(userRole == Role.kOwner ? View.VISIBLE : View.GONE);
         manageTestsButton.setOnClickListener(v -> {
-            // Переход к тестам доступен всем
             Intent testsIntent = new Intent(GroupInfoActivity.this, TestsActivity.class);
+            testsIntent.putExtra(this.API_TOKEN_KEY, apiToken);
             startActivity(testsIntent);
         });
 
         editGroupButton.setOnClickListener(v -> {
-            // Редактирование группы доступно только админу
-            if (isAdmin) {
+            if (userRole == Role.kOwner) {
                 Intent editIntent = new Intent(GroupInfoActivity.this, EditGroupActivity.class);
+                editIntent.putExtra("GROUP", group);
+                editIntent.putExtra(API_TOKEN_KEY, apiToken);
                 startActivity(editIntent);
-            } else {
-                Toast.makeText(this, "Only admin can edit the group", Toast.LENGTH_SHORT).show();
-            }
+            } else  showToast("Only admin can edit the group");
+        });
+
+        joinAnotherGroupButton.setOnClickListener(v -> {
+            Intent groupIntent = new Intent(GroupInfoActivity.this, GroupConnActivity.class);
+            startActivity(groupIntent);
         });
     }
 }

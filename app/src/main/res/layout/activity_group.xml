@@ -25,9 +25,10 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="68dp"
         android:hint="Group name"
-        app:layout_constraintTop_toBottomOf="@+id/titleTextView">
+        app:layout_constraintTop_toBottomOf="@+id/titleTextView"
+        tools:layout_editor_absoluteX="16dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/groupNameEditText"
@@ -35,52 +36,39 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/comfortaa_light"
             android:inputType="textCapWords"
-            android:maxLength="30"/>
+            android:maxLength="30" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/groupDescriptionInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="379dp"
+        android:layout_height="147dp"
         android:layout_marginTop="16dp"
         android:hint="Description (optional)"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/groupNameInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/groupDescriptionEditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="147dp"
             android:fontFamily="@font/comfortaa_light"
-            android:inputType="textMultiLine"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/groupCodeInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Group code"
-        app:layout_constraintTop_toBottomOf="@+id/groupDescriptionInputLayout">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/groupCodeEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/comfortaa_light"
-            android:inputType="text"/>
+            android:inputType="textMultiLine" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/createGroupButton"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:backgroundTint="#b993c7"
+        android:fontFamily="@font/comfortaa_light"
         android:text="Create a group"
         android:textColor="#FFFFFF"
-        android:fontFamily="@font/comfortaa_light"
-        app:layout_constraintTop_toBottomOf="@+id/groupCodeInputLayout"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/groupDescriptionInputLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

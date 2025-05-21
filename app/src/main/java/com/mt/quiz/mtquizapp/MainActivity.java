@@ -15,7 +15,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.mt.quiz.service.BaseService;
 import com.mt.quiz.service.UserService;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseMtrQuizActivity {
 
     private TextInputEditText loginEditText;
     private TextInputEditText passwordEditText;
@@ -54,26 +54,24 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         var response = UserService.login(login, password);
-        if (response == null) {
-            showToast("Server does not respond");
-            return;
-        }
-        if (response.isSuccessful()) {
-            showToast("Login successful!" + response.body());
-            Intent intent = new Intent(MainActivity.this, GroupConnActivity.class); //инфо о группе
+        if (response != null && response.isSuccessful()) {
+            showToast("Login successful!");
+            var userResponse = UserService.getByUsername(login);
+            if (userResponse != null && response.isSuccessful() && userResponse.body().getGroupId() != null) {
+                Intent groupIntent = new Intent(MainActivity.this, GroupInfoActivity.class);
+                groupIntent.putExtra("GROUP_ID", userResponse.body().getGroupId());
+                groupIntent.putExtra(this.API_TOKEN_KEY, response.body());
+                startActivity(groupIntent);
+                return;
+            }
+            Intent intent = new Intent(MainActivity.this, GroupConnActivity.class);
+            intent.putExtra(this.API_TOKEN_KEY, response.body());
             startActivity(intent);
-            finish();
-        }
-        if (response.code() == 404) showToast("User not found");
-        if (response.code() == 400) showToast(BaseService.parseError(response).getDescription());
+        } else handleErrorCodes(response);
     }
 
     private void createUser() {
         Intent intent =  new Intent(MainActivity.this, CreateUser.class);
         startActivity(intent);
-    }
-
-    private void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

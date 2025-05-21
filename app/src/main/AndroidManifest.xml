@@ -23,6 +23,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".CreateUser" />
+        <activity android:name=".GroupConnActivity" />
+        <activity android:name=".CreateGroupActivity" />
+        <activity android:name=".EditGroupActivity" />
+        <activity android:name=".GroupInfoActivity" />
+        <activity android:name=".TestsActivity" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
