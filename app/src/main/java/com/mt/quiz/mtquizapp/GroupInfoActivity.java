@@ -45,6 +45,8 @@ public class GroupInfoActivity extends BaseMtrQuizActivity {
         manageTestsButton.setOnClickListener(v -> {
             Intent testsIntent = new Intent(GroupInfoActivity.this, TestsActivity.class);
             testsIntent.putExtra(this.API_TOKEN_KEY, apiToken);
+            testsIntent.putExtra("GROUP_ID", groupId);
+            testsIntent.putExtra("GROUP_ROLE", userRole.name());
             startActivity(testsIntent);
         });
 

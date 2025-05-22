@@ -3,16 +3,13 @@ package com.mt.quiz.mtquizapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.mt.quiz.service.BaseService;
 import com.mt.quiz.service.UserService;
 
 public class MainActivity extends BaseMtrQuizActivity {
@@ -33,7 +30,7 @@ public class MainActivity extends BaseMtrQuizActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        loginEditText = findViewById(R.id.loginEditText);
+        loginEditText = findViewById(R.id.usernameLoginText);
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
         createUserButton = findViewById(R.id.createUserButton);

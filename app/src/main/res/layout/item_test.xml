@@ -6,7 +6,8 @@
     android:layout_marginBottom="8dp"
     android:backgroundTint="#b993c7"
     android:fontFamily="@font/comfortaa_light"
-    android:textColor="#FFFFFF"
-    android:textSize="16sp"
     android:padding="16dp"
-    android:textAllCaps="false"/>
+    android:text="Test name"
+    android:textAllCaps="false"
+    android:textColor="#FFFFFF"
+    android:textSize="16sp" />

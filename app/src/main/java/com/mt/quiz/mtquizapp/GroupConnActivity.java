@@ -5,11 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.textfield.TextInputEditText;
-import com.mt.quiz.service.BaseService;
-import com.mt.quiz.service.GroupService;
 import com.mt.quiz.service.UserService;
 
 public class GroupConnActivity extends BaseMtrQuizActivity {
@@ -23,7 +19,7 @@ public class GroupConnActivity extends BaseMtrQuizActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.connection_screen);
 
-        codeEditText = findViewById(R.id.loginEditText);
+        codeEditText = findViewById(R.id.usernameLoginText);
         joinGroupButton = findViewById(R.id.JoinGroupButton);
         createGroupButton = findViewById(R.id.createUserButton);
 

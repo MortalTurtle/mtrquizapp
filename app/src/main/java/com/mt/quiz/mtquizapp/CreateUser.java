@@ -22,7 +22,7 @@ public class CreateUser extends BaseMtrQuizActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.create_user_screen);
 
-        loginEditText = findViewById(R.id.loginEditText);
+        loginEditText = findViewById(R.id.usernameLoginText);
         passEditText = findViewById(R.id.passEditText);
         createUserButton = findViewById(R.id.createUserButton);
 

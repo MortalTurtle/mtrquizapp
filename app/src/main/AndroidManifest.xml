@@ -28,6 +28,7 @@
         <activity android:name=".EditGroupActivity" />
         <activity android:name=".GroupInfoActivity" />
         <activity android:name=".TestsActivity" />
+        <activity android:name=".CreateTestActivity" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
