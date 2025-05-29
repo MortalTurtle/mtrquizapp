@@ -21,8 +21,8 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/testNameEditText"
-        android:layout_width="267dp"
-        android:layout_height="50dp"
+        android:layout_width="332dp"
+        android:layout_height="55dp"
         android:layout_marginTop="40dp"
         android:hint="Test name"
         android:singleLine="true"
@@ -42,8 +42,8 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/minScoreEditText"
-        android:layout_width="171dp"
-        android:layout_height="51dp"
+        android:layout_width="323dp"
+        android:layout_height="48dp"
         android:layout_marginTop="32dp"
         android:hint="Min score to pass"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,9 +52,11 @@
 
     <Button
         android:id="@+id/createTestButtonCreateScreen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="175dp"
+        android:fontFamily="@font/comfortaa_light"
+        android:layout_height="63dp"
         android:layout_marginTop="36dp"
+        android:backgroundTint="#b993c7"
         android:text="Create"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

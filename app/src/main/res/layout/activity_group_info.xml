@@ -39,12 +39,12 @@
 
     <TextView
         android:id="@+id/groupDescriptionTextView"
-        android:layout_width="317dp"
-        android:layout_height="95dp"
+        android:layout_width="357dp"
+        android:layout_height="92dp"
         android:layout_marginTop="124dp"
         android:fontFamily="@font/comfortaa_light"
         android:text="Group description"
-        android:textSize="24sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -67,7 +67,7 @@
         android:id="@+id/manageTestsButton"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="#b993c7"
         android:fontFamily="@font/comfortaa_light"
         android:text="Manage Tests"
@@ -80,7 +80,7 @@
         android:id="@+id/joinAnotherGroupButton"
         android:layout_width="157dp"
         android:layout_height="70dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="52dp"
         android:backgroundTint="#b993c7"
         android:fontFamily="@font/comfortaa_light"
         android:text="Join Another"

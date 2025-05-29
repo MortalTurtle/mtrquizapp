@@ -56,7 +56,7 @@ public class GroupInfoActivity extends BaseMtrQuizActivity {
                 editIntent.putExtra("GROUP", group);
                 editIntent.putExtra(API_TOKEN_KEY, apiToken);
                 startActivity(editIntent);
-            } else  showToast("Only admin can edit the group");
+            } else showToast("Only admin can edit the group");
         });
 
         joinAnotherGroupButton.setOnClickListener(v -> {

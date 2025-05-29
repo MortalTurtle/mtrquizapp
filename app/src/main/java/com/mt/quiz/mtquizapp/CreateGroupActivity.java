@@ -40,6 +40,7 @@ public class CreateGroupActivity extends BaseMtrQuizActivity {
             Toast.makeText(this, "Enter the name of the group", Toast.LENGTH_SHORT).show();
             return;
         }
+        //group_id, error = GroupService.create(apiToken,name,description)
         Response<String> response = GroupService.create(apiToken,name,description);
         if (response != null && response.isSuccessful()) {
             Toast.makeText(this, "The group has been created!", Toast.LENGTH_SHORT).show();
