@@ -40,10 +40,8 @@ public class TestsActivity extends BaseMtrQuizActivity {
         createTestButton.setVisibility(groupRole == Role.kOwner || groupRole == Role.kContributor ? View.VISIBLE : View.GONE);
         createTestButton.setOnClickListener(v -> {
             var createTestIntent = new Intent(TestsActivity.this, CreateTestActivity.class);
-            createTestIntent.putExtra(this.API_TOKEN_KEY, apiToken);
-            createTestIntent.putExtra("GROUP_ID", groupId);
-            createTestIntent.putExtra("GROUP_ROLE", groupRole.name());
-            startActivity(createTestIntent);
+            startActivityWithAddedExtras(createTestIntent);
+            loadTestData();
         });
         TestsAdapter adapter = new TestsAdapter(testList, test -> {
             Toast.makeText(this, "Starting: " + test.getName(), Toast.LENGTH_SHORT).show();

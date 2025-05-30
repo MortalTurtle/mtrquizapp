@@ -1,5 +1,6 @@
 package com.mt.quiz.models;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 
@@ -8,7 +9,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Question {
+public class Question implements Serializable {
     private String id;
 
     private String testId;
