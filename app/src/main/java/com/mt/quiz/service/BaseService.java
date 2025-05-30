@@ -3,7 +3,8 @@ package com.mt.quiz.service;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.mt.quiz.models.apimodels.BadRequestError;
-import com.mt.quiz.models.apimodels.UserRaw;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
@@ -62,7 +63,6 @@ public class BaseService {
             .build();
 
     public static ApiService apiService = retrofit.create(ApiService.class);
-    private final HashMap<Class<?>, Function<String, Object>> convertStringValueToSomeClass = new HashMap<>();
 
     public static BadRequestError parseError(Response<?> response) {
         Gson gson = new Gson();
@@ -88,23 +88,6 @@ public class BaseService {
             return null;
         } finally {
             executor.shutdown();
-        }
-    }
-
-    public BaseService() {
-        convertStringValueToSomeClass.put(String.class, (String str) -> str);
-        convertStringValueToSomeClass.put(Integer.class, (String str) -> Integer.valueOf(str));
-    }
-
-    protected void setNewFieldValueFromString(Object obj, String fieldName, String value)
-            throws NoSuchFieldException, NumberFormatException {
-        var field = obj.getClass().getDeclaredField(fieldName);
-        field.setAccessible(true);
-        var fieldType = field.getType();
-        try {
-            field.set(obj, convertStringValueToSomeClass.get(fieldType).apply(value));
-        } catch (IllegalAccessException ex) {
-            throw new RuntimeException(ex);
         }
     }
 }

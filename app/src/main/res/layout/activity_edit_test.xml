@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp">
+
+
+        <TextView
+            android:id="@+id/testNamePreviewText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/comfortaa_light"
+            android:text="Test name"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/testNameInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Test Name"
+            app:boxStrokeColor="#b993c7"
+            app:hintTextColor="#b993c7"
+            app:layout_constraintTop_toBottomOf="@+id/testNamePreviewText"
+            app:startIconTint="#b993c7">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/testNameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/comfortaa_light"
+                android:inputType="text"
+                android:textColor="#000000"
+                android:textColorHint="#b993c7"
+                android:textSize="16sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/testDescriptionInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:hint="Test Description"
+            app:boxStrokeColor="#b993c7"
+            app:hintTextColor="#b993c7"
+            app:layout_constraintTop_toBottomOf="@+id/testNameInputLayout"
+            app:startIconTint="#b993c7">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/testDescriptionEditText"
+                android:layout_width="match_parent"
+                android:layout_height="103dp"
+                android:fontFamily="@font/comfortaa_light"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:minLines="3"
+                android:textColor="#000000"
+                android:textColorHint="#b993c7"
+                android:textSize="16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/minScoreInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:hint="Minimum Passing Score"
+            app:boxStrokeColor="#b993c7"
+            app:hintTextColor="#b993c7"
+            app:layout_constraintTop_toBottomOf="@+id/testDescriptionInputLayout"
+            app:startIconTint="#b993c7">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/minScoreEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/comfortaa_light"
+                android:inputType="number"
+                android:textColor="#000000"
+                android:textColorHint="#b993c7"
+                android:textSize="16sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/questionsHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/comfortaa_light"
+            android:text="Questions"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/minScoreInputLayout" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/questionsRecyclerView"
+            android:layout_width="355dp"
+            android:layout_height="106dp"
+            android:layout_marginTop="16dp"
+            android:clipToPadding="false"
+            android:paddingBottom="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/questionsHeader"
+            tools:layout_editor_absoluteX="3dp" />
+
+        <Button
+            android:id="@+id/addQuestionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#b993c7"
+            android:fontFamily="@font/comfortaa_light"
+            android:text="Add Question"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/questionsRecyclerView" />
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:backgroundTint="#b993c7"
+            android:fontFamily="@font/comfortaa_light"
+            android:text="Save Test"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addQuestionButton"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

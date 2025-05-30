@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back">
+
+    <TextView
+        android:id="@+id/createTestsHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/comfortaa_light"
+        android:text="Create test"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/testNameEditText"
+        android:layout_width="332dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="40dp"
+        android:hint="Test name"
+        android:singleLine="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createTestsHeader" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/testDescriptionEditText"
+        android:layout_width="333dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="36dp"
+        android:hint="Description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/testNameEditText" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/minScoreEditText"
+        android:layout_width="323dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:hint="Min score to pass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/testDescriptionEditText" />
+
+    <Button
+        android:id="@+id/createTestButtonCreateScreen"
+        android:layout_width="175dp"
+        android:fontFamily="@font/comfortaa_light"
+        android:layout_height="63dp"
+        android:layout_marginTop="36dp"
+        android:backgroundTint="#b993c7"
+        android:text="Create"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/minScoreEditText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

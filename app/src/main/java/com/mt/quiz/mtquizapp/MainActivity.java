@@ -2,31 +2,17 @@ package com.mt.quiz.mtquizapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.mt.quiz.models.apimodels.UserRaw;
-import com.mt.quiz.service.BaseService;
 import com.mt.quiz.service.UserService;
 
-import java.io.IOException;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-
-import retrofit2.Call;
-import retrofit2.Response;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseMtrQuizActivity {
 
     private TextInputEditText loginEditText;
     private TextInputEditText passwordEditText;
@@ -39,20 +25,15 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        // Настройка отступов для системных баров (EdgeToEdge)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        // Инициализация элементов
-        loginEditText = findViewById(R.id.loginEditText);
+        loginEditText = findViewById(R.id.usernameLoginText);
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
         createUserButton = findViewById(R.id.createUserButton);
-
-        // Обработчик нажатия кнопки
         loginButton.setOnClickListener(v -> login());
         createUserButton.setOnClickListener(v -> createUser());
     }
@@ -70,21 +51,24 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         var response = UserService.login(login, password);
-        if (response == null) {
-            showToast("Server does not respond");
-            return;
-        }
-        if (response.isSuccessful()) showToast("Login successful!" + response.body());
-        if (response.code() == 404) showToast("User not found");
-        if (response.code() == 400) showToast(BaseService.parseError(response).getDescription());
+        if (response != null && response.isSuccessful()) {
+            showToast("Login successful!");
+            var userResponse = UserService.getByUsername(login);
+            if (userResponse != null && response.isSuccessful() && userResponse.body().getGroupId() != null) {
+                Intent groupIntent = new Intent(MainActivity.this, GroupInfoActivity.class);
+                groupIntent.putExtra("GROUP_ID", userResponse.body().getGroupId());
+                groupIntent.putExtra(this.API_TOKEN_KEY, response.body());
+                startActivity(groupIntent);
+                return;
+            }
+            Intent intent = new Intent(MainActivity.this, GroupConnActivity.class);
+            intent.putExtra(this.API_TOKEN_KEY, response.body());
+            startActivity(intent);
+        } else handleErrorCodes(response);
     }
 
     private void createUser() {
         Intent intent =  new Intent(MainActivity.this, CreateUser.class);
         startActivity(intent);
-    }
-
-    private void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

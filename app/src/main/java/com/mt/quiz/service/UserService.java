@@ -2,15 +2,7 @@ package com.mt.quiz.service;
 
 import com.mt.quiz.models.User;
 import com.mt.quiz.models.apimodels.UserRaw;
-
-import java.io.IOException;
-import java.lang.annotation.Documented;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 import lombok.RequiredArgsConstructor;
-import retrofit2.Call;
 import retrofit2.Response;
 
 @RequiredArgsConstructor
@@ -31,12 +23,12 @@ public class UserService extends BaseService {
         return wrapHttpRequest(apiService.postUser(new UserRaw(username, password)));
     }
 
-    public void updateUser(String apiToken, String username, String password) {
-        throw new UnsupportedOperationException();
+    public static Response<Void> updateUser(String apiToken, String username, String password) {
+        return wrapHttpRequest(apiService.editUser(apiToken, new UserRaw(username, password)));
     }
 
-    public void joinGroup(String apiToken, String groupId) {
-        throw new UnsupportedOperationException();
+    public static Response<Void> joinGroup(String apiToken, String groupId) {
+        return wrapHttpRequest(apiService.joinGroup(apiToken, groupId));
     }
     /**
      @return returns api token
